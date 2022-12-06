@@ -54,3 +54,17 @@ class LightningViT(pl.LightningModule):
         accuracy = self.accuracy(pred, y)
         self.log('accuracy', accuracy)
         return loss
+
+    @staticmethod
+    def build_model_from_args(args):
+        return LightningViT(
+            image_size=args.image_size,
+            patch_size=args.patch_size,
+            num_classes=args.num_classes,
+            dim=args.dim,
+            depth=args.depth,
+            heads=args.heads,
+            mlp_dim=args.mlp_dim,
+            dropout=args.dropout,
+            emb_dropout=args.emb_dropout
+        )
