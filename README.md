@@ -8,11 +8,11 @@ My playground to learn about vision transformers.
 - [x] Train in [Pytorch Lightning ⚡](https://pytorch-lightning.readthedocs.io/en/latest/)
 - [x] Benchmark on [cifar10 🖼](https://www.cs.toronto.edu/~kriz/cifar.html)
 - [x] Resumable Training
+- [x] Hyperparameters configurable via CLI
+- [x] Add wandb for logging 📉
 - [ ] Add lr scheduler
-- [ ] Hyperparameters configurable via CLI
 - [ ] Play with variants of ViT
 - [ ] Switch to FlashAttention ⚡
-- [ ] Add wandb for logging 📉
 - [ ] ...
 
 

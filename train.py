@@ -2,12 +2,15 @@ from argparse import ArgumentParser
 from lightning.pytorch import Trainer
 from src.engine import LightningViT
 from lightning.pytorch.callbacks import ModelCheckpoint, EarlyStopping, LearningRateMonitor
+from lightning.pytorch.loggers import WandbLogger
 from src.datasets import HuggingFaceDataModule
 
 
 def main(hp):
+    wandb_logger = WandbLogger(project="ViT-playground")
     data = HuggingFaceDataModule(dataset_name="cifar10", batch_size=hp.batch_size, num_workers=hp.num_workers, shuffle=hp.shuffle_data)
     setattr(hp, "num_classes", data.num_classes)
+    wandb_logger.log_hyperparams(hp)
 
     model = LightningViT.build_model_from_args(hp)
 
@@ -19,6 +22,7 @@ def main(hp):
             EarlyStopping(monitor="val_loss", patience=10),
             LearningRateMonitor(logging_interval='step')
         ],
+        logger=wandb_logger,
         max_epochs=-1,
     )
 
