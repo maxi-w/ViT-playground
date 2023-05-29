@@ -1,6 +1,6 @@
 import time
 
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 import torch
 import torchmetrics
 from torch import nn

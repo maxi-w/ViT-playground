@@ -1,13 +1,13 @@
 from argparse import ArgumentParser
-from pl_bolts.datamodules import CIFAR10DataModule
-from pytorch_lightning import Trainer
+from lightning.pytorch import Trainer
 from src.engine import LightningViT
-from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping, LearningRateMonitor
+from lightning.pytorch.callbacks import ModelCheckpoint, EarlyStopping, LearningRateMonitor
+from src.datasets import HuggingFaceDataModule
 
 
 def main(hp):
-    cifar_data = CIFAR10DataModule(data_dir="./data", num_workers=hp.num_workers, shuffle=hp.shuffle_data)
-    setattr(hp, "num_classes", cifar_data.num_classes)
+    data = HuggingFaceDataModule(dataset_name="cifar10", batch_size=hp.batch_size, num_workers=hp.num_workers, shuffle=hp.shuffle_data)
+    setattr(hp, "num_classes", data.num_classes)
 
     model = LightningViT.build_model_from_args(hp)
 
@@ -22,7 +22,7 @@ def main(hp):
         max_epochs=-1,
     )
 
-    trainer.fit(model, datamodule=cifar_data, ckpt_path=hp.resume_from_ckpt)
+    trainer.fit(model, datamodule=data, ckpt_path=hp.resume_from_ckpt)
 
 
 if __name__ == "__main__":
@@ -41,5 +41,6 @@ if __name__ == "__main__":
     parser.add_argument("--dropout", type=float, default=0.1)
     parser.add_argument("--emb-dropout", type=float, default=0.1)
     parser.add_argument("--learning-rate", type=float, default=1e-4)
+    parser.add_argument("--batch-size", type=int, default=32)
     args = parser.parse_args()
     main(args)
