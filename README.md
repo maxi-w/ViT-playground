@@ -1,8 +1,6 @@
-# ViT Lightning Training
+# ViT Playground
 
 My playground to learn about vision transformers.
-
-ViT implementation from https://github.com/lucidrains/vit-pytorch.
 
 ## Goal
 
@@ -13,4 +11,11 @@ ViT implementation from https://github.com/lucidrains/vit-pytorch.
 - [ ] Add lr scheduler
 - [ ] Hyperparameters configurable via CLI
 - [ ] Play with variants of ViT
+- [ ] Switch to FlashAttention ⚡
+- [ ] Add wandb for logging 📉
 - [ ] ...
+
+
+## References
+
+ViT base implementation from https://github.com/lucidrains/vit-pytorch.
