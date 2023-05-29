@@ -10,9 +10,9 @@ My playground to learn about vision transformers.
 - [x] Resumable Training
 - [x] Hyperparameters configurable via CLI
 - [x] Add wandb for logging 📉
+- [x] Switch to FlashAttention ⚡
 - [ ] Add lr scheduler
 - [ ] Play with variants of ViT
-- [ ] Switch to FlashAttention ⚡
 - [ ] ...
 
 
